@@ -1,2 +1,3 @@
 # ntpClock
-Arduino 7-digits clock that keeps sync
+## Arduino 7-digits clock that keeps sync
+![nodemcu-esp8266](https://github.com/gabacode/ntpClock/blob/master/images/prev.jpg?raw=true)
