@@ -1,4 +1,4 @@
-## Arduino that keeps sync with NTP server
+## Arduino clock synchronized with NTP server
 ![nodemcu-esp8266](https://github.com/gabacode/ntpClock/blob/master/images/matrix.jpg?raw=true)
 
 ## 7-segments display requirements
