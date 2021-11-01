@@ -15,10 +15,12 @@
 
 const char *ssid     = "your-wifi-name";
 const char *password = "your-wifi-password";
-const long utcOffsetInSeconds = 7200;
+const long utcOffsetInSeconds = 3600;
+int hours = 88;
+int minutes = 88;
 
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffsetInSeconds);
+NTPClient timeClient(ntpUDP, "it.pool.ntp.org", utcOffsetInSeconds);
 MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 void setup() {
@@ -27,7 +29,7 @@ void setup() {
   P.setTextAlignment(PA_CENTER);
   P.setCharSpacing(2);
   WiFi.begin(ssid, password);
-  P.print("88:88");
+  P.print(String(hours)+":"+String(minutes));
   while ( WiFi.status() != WL_CONNECTED ) {
     delay ( 500 );
     Serial.print ( "." );
@@ -37,6 +39,8 @@ void setup() {
 
 void loop() {
   timeClient.update();
-  P.print(String(timeClient.getHours()) + ":" + String(timeClient.getMinutes()));
+  hours = timeClient.getHours();
+  minutes = timeClient.getMinutes();
+  P.print(String(hours)+":"+ (minutes < 10 ? "0" + String(minutes) : String(minutes)));  
   delay(1000);
 }
